@@ -13,7 +13,7 @@ echo ====================
 echo START...
 timeout /t %2
 
-start /MAX %unmute% %svv% %aimp% %3
+start %unmute% %svv% %aimp% %3
 
 echo ====================
 echo GO...
