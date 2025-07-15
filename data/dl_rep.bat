@@ -1,3 +1,10 @@
+rem %1 - имя файла
+rem %2 - ожидание загрузки
+rem %3 - длительность воспроизведения
+rem %4 - кол-во повторов
+rem %5 - тишина между повторами
+rem %6 - тишина после воспроизведения
+
 set /p stream=<%~dp0var_stream.txt
 set svv=%~dp0SVV\SVV.exe
 set aimp=%~dp0AIMP\AIMP.exe
@@ -15,7 +22,7 @@ for /l %%i in (1, 1, %4) do (
     echo START...
     timeout /t %2
 
-    start %unmute% %svv% %aimp% %3
+    start "" %unmute% %svv% %stream% %aimp% %3
 
     echo ====================
     echo STEP %%i / %4...

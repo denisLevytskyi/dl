@@ -1,3 +1,8 @@
+rem %1 - имя файла
+rem %2 - ожидание загрузки
+rem %3 - длительность воспроизведения
+rem %4 - тишина после воспроизведения
+
 set /p stream=<%~dp0var_stream.txt
 set svv=%~dp0SVV\SVV.exe
 set aimp=%~dp0AIMP\AIMP.exe
@@ -13,7 +18,7 @@ echo ====================
 echo START...
 timeout /t %2
 
-start %unmute% %svv% %aimp% %3
+start "" %unmute% %svv% %stream% %aimp% %3
 
 echo ====================
 echo GO...
