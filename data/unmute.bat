@@ -9,7 +9,7 @@ rem %4 - длительность воспроизведения
 set /p cursor_block=<%~dp0var_cursor_block.txt
 set nircmd=%~dp0NIRCMD\NIRCMD.exe
 
-if "%cursor_block%"=="1" (
+if %cursor_block%==1 (
     echo ====================
     echo YOUR CURSOR IS BLOCKED...
 )
@@ -18,7 +18,7 @@ if "%cursor_block%"=="1" (
 
 setlocal enabledelayedexpansion
 for /l %%i in (1, 1, %4) do (
-    if "%cursor_block%"=="1" (
+    if %cursor_block%==1 (
         start "" %nircmd% setcursor %%i %%i
     )
     timeout /t 1 >nul 2>&1
