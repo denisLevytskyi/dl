@@ -1,8 +1,11 @@
 set wget=%~dp0WGET\WGET.exe
+set svv=%~dp0SVV\SVV.exe
 set response_path=%~dp0var_response.txt
 set /p region=<%~dp0var_region.txt
 set /p token=<%~dp0var_token.txt
 set /p alert_on=<%~dp0var_alert_on.txt
+set /p log_on=<%~dp0var_log_on.txt
+set /p stream=<%~dp0var_stream.txt
 set status=0
 
 :loop
@@ -17,7 +20,11 @@ if %response%=="A" (
             call %~dp0dl_rep.bat 99.mp3 5 35 3 5 100
         ) else (
             echo [%date% %time%] - START AIR ALARM
-            call %~dp0dl.bat 00.mp3 5 60 20
+            %svv% /Mute "%stream%"
+            %svv% /SetVolume "%stream%" 0
+            timeout /t 50 >nul 2>&1
+            %svv% /Unmute "%stream%"
+            %svv% /SetVolume "%stream%" 100
         )
     ) else (
         color C
@@ -27,6 +34,9 @@ if %response%=="A" (
     set status=0
     color 2
     echo [%date% %time%] - NO AIR ALARM
+)
+if %log_on%==1 (
+    echo [%date% %time%] %status% --- %region% --- %response% --- %alert_on% >> %~dp0_log.txt
 )
 timeout /t 30 >nul 2>&1
 goto loop
