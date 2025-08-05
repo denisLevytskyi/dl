@@ -3,6 +3,8 @@ rem %2 - ожидание загрузки
 rem %3 - длительность воспроизведения
 rem %4 - тишина после воспроизведения
 
+echo [%date% %time%] DL %1 %2 %3 %4 >> %~dp0_log.txt
+
 set /p stream=<%~dp0var_stream.txt
 set svv=%~dp0SVV\SVV.exe
 set aimp=%~dp0AIMP\AIMP.exe

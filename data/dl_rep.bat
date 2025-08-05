@@ -5,6 +5,8 @@ rem %4 - кол-во повторов
 rem %5 - тишина между повторами
 rem %6 - тишина после воспроизведения
 
+echo [%date% %time%] DL-REP %1 %2 %3 %4 %5 %6 >> %~dp0_log.txt
+
 set /p stream=<%~dp0var_stream.txt
 set svv=%~dp0SVV\SVV.exe
 set aimp=%~dp0AIMP\AIMP.exe

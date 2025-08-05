@@ -1,3 +1,5 @@
+echo [%date% %time%] ALERT >> %~dp0_log.txt
+
 echo = = = = = = = = = = = = = = = = = = = = =
 echo = = = = = = = =  WARNING  = = = = = = = =
 echo = = = =  YOU HAVE TIME TO CANCEL  = = = =

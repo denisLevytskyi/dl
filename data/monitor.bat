@@ -1,3 +1,5 @@
+echo [%date% %time%] MONITOR >> %~dp0_log.txt
+
 set wget=%~dp0WGET\WGET.exe
 set svv=%~dp0SVV\SVV.exe
 set response_path=%~dp0var_response.txt
@@ -11,6 +13,7 @@ set status=0
 :loop
 %wget% -q -O %response_path% https://api.alerts.in.ua/v1/iot/active_air_raid_alerts/%region%.json?token=%token%
 set /p response=<%response_path%
+
 if %response%=="A" (
     if %status%==0 (
         set status=1
@@ -35,8 +38,10 @@ if %response%=="A" (
     color 2
     echo [%date% %time%] - NO AIR ALARM
 )
+
 if %log_on%==1 (
-    echo [%date% %time%] %status% --- %region% --- %response% --- %alert_on% >> %~dp0_log.txt
+    echo [%date% %time%] %status% --- %region% --- %response% --- %alert_on% >> %~dp0_log_monitor.txt
 )
+
 timeout /t 30 >nul 2>&1
 goto loop

@@ -1,3 +1,5 @@
+echo [%date% %time%] PRELOAD >> %~dp0_log.txt
+
 set aimp=%~dp0AIMP\AIMP.exe
 
 rmdir /s /q %~dp0AIMP\Profile >nul 2>&1

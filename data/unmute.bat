@@ -6,6 +6,8 @@ rem %2 - поток
 rem %3 - плеер
 rem %4 - длительность воспроизведения
 
+echo [%date% %time%] UNMUTE %1 %2 %3 %4 >> %~dp0_log.txt
+
 set /p cursor_block=<%~dp0var_cursor_block.txt
 set nircmd=%~dp0NIRCMD\NIRCMD.exe
 
