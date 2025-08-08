@@ -16,6 +16,7 @@ set /p response=<%response_path%
 
 if %response%=="A" (
     if %status%==0 (
+        echo [%date% %time%] ALARM SIGNAL RECEIVED >> %~dp0_log.txt
         set status=1
         color 4
         if %alert_on%==1 (
