@@ -1,6 +1,8 @@
 @echo off
 color 2
 
+echo [%date% %time%] SET TASKS >> %~dp0data\_log.txt
+
 schtasks /create /tn "_renew" /tr "%~dp0task_renew.bat" /sc once /st 08:01 /f
 
 schtasks /create /tn "_preload1" /tr "%~dp0task_preload.bat" /sc once /st 08:55 /f
