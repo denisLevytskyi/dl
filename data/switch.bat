@@ -15,9 +15,6 @@ if %cursor_block%==1 (
     echo YOUR CURSOR IS BLOCKED...
 )
 
-%svv% /Mute "%stream%"
-%svv% /SetVolume "%stream%" 0
-
 :loop
 set /p switch=<%~dp0var_switch.txt
 if %switch%==0 (
@@ -32,6 +29,8 @@ if %cursor_block%==1 (
     start "" %nircmd% setcursor 0 0
 )
 
+%svv% /Mute "%stream%"
+%svv% /SetVolume "%stream%" 0
 %svv% /Unmute "%aimp%"
 %svv% /SetVolume "%aimp%" 100
 
