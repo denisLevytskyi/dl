@@ -1,14 +1,14 @@
-echo [%date% %time%] MONITOR >> %~dp0_log.txt
+echo [%date% %time%] MONITOR START >> %~dp0_log.txt
 
-set wget=%~dp0WGET\WGET.exe
-set svv=%~dp0SVV\SVV.exe
-set response_path=%~dp0var_response.txt
-set /p region=<%~dp0var_region.txt
-set /p token=<%~dp0var_token.txt
 set /p alert_on=<%~dp0var_alert_on.txt
 set /p log_on=<%~dp0var_log_on.txt
+set /p region=<%~dp0var_region.txt
 set /p stream=<%~dp0var_stream.txt
+set /p token=<%~dp0var_token.txt
+set response_path=%~dp0var_response.txt
 set status=0
+set svv=%~dp0SVV\SVV.exe
+set wget=%~dp0WGET\WGET.exe
 
 :loop
 %wget% -q -O %response_path% https://api.alerts.in.ua/v1/iot/active_air_raid_alerts/%region%.json?token=%token%

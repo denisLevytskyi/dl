@@ -5,15 +5,13 @@ rem %4 - кол-во повторов
 rem %5 - тишина между повторами
 rem %6 - тишина после воспроизведения
 
-echo [%date% %time%] DL-REP %1 %2 %3 %4 %5 %6 >> %~dp0_log.txt
+echo [%date% %time%] DL-REP START %1 %2 %3 %4 %5 %6 >> %~dp0_log.txt
 
-set /p stream=<%~dp0var_stream.txt
-set svv=%~dp0SVV\SVV.exe
 set aimp=%~dp0AIMP\AIMP.exe
-set unmute=%~dp0unmute.bat
+set switch=%~dp0switch.bat
+set switch_path=%~dp0var_switch.txt
 
-%svv% /Mute "%stream%"
-%svv% /SetVolume "%stream%" 0
+start "" %switch%
 
 setlocal enabledelayedexpansion
 for /l %%i in (1, 1, %4) do (
@@ -23,8 +21,6 @@ for /l %%i in (1, 1, %4) do (
     echo ====================
     echo START...
     timeout /t %2
-
-    start "" %unmute% %svv% %stream% %aimp% %3
 
     echo ====================
     echo STEP %%i / %4...
@@ -43,5 +39,5 @@ echo ====================
 echo END...
 timeout /t %6
 
-%svv% /Unmute "%stream%"
-%svv% /SetVolume "%stream%" 100
+echo 0 > %switch_path%
+echo [%date% %time%] DL-REP STOP >> %~dp0_log.txt

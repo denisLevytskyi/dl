@@ -3,24 +3,19 @@ rem %2 - ожидание загрузки
 rem %3 - длительность воспроизведения
 rem %4 - тишина после воспроизведения
 
-echo [%date% %time%] DL %1 %2 %3 %4 >> %~dp0_log.txt
+echo [%date% %time%] DL START %1 %2 %3 %4 >> %~dp0_log.txt
 
-set /p stream=<%~dp0var_stream.txt
-set svv=%~dp0SVV\SVV.exe
 set aimp=%~dp0AIMP\AIMP.exe
-set unmute=%~dp0unmute.bat
+set switch=%~dp0switch.bat
+set switch_path=%~dp0var_switch.txt
 
 rmdir /s /q %~dp0AIMP\Profile >nul 2>&1
 start "" "%aimp%" "%~dp0_records\%1"
-
-%svv% /Mute "%stream%"
-%svv% /SetVolume "%stream%" 0
+start "" %switch%
 
 echo ====================
 echo START...
 timeout /t %2
-
-start "" %unmute% %svv% %stream% %aimp% %3
 
 echo ====================
 echo GO...
@@ -33,5 +28,5 @@ echo ====================
 echo END...
 timeout /t %4
 
-%svv% /Unmute "%stream%"
-%svv% /SetVolume "%stream%" 100
+echo 0 > %switch_path%
+echo [%date% %time%] DL STOP >> %~dp0_log.txt
