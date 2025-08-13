@@ -5,9 +5,6 @@ echo [%date% %time%] SET TASKS >> %~dp0data\_log.txt
 
 schtasks /create /tn "_renew" /tr "%~dp0task_renew.bat" /sc once /st 08:01 /f
 
-schtasks /create /tn "_preload1" /tr "%~dp0task_preload.bat" /sc once /st 08:55 /f
-schtasks /create /tn "_preload2" /tr "%~dp0task_preload.bat" /sc once /st 22:30 /f
-
 schtasks /create /tn "_minute" /tr "%~dp0task_minute.bat" /sc once /st 09:00 /f
 
 schtasks /create /tn "_close1" /tr "%~dp0task_close.bat" /sc once /st 22:35 /f
