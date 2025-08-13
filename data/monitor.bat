@@ -21,7 +21,7 @@ if %response%=="A" (
         color 4
         if %alert_on%==1 (
             echo [%date% %time%] - START AIR ALARM ALERT
-            call %~dp0dl_rep.bat 99.mp3 5 35 3 5 100
+            call %~dp0dl_rep.bat 99.mp3 5 3 3 100
         ) else (
             echo [%date% %time%] - START AIR ALARM
             %svv% /Mute "%stream%"

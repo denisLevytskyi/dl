@@ -5,7 +5,7 @@ echo [%date% %time%] SWITCH START >> %~dp0_log.txt
 
 set /p cursor_block=<%~dp0var_cursor_block.txt
 set /p stream=<%~dp0var_stream.txt
-set aimp=%~dp0AIMP\AIMP.exe
+set mpg123=%~dp0MPG123\MPG123.exe
 set nircmd=%~dp0NIRCMD\NIRCMD.exe
 set svv=%~dp0SVV\SVV.exe
 set switch_path=%~dp0var_switch.txt
@@ -26,13 +26,13 @@ if %switch%==0 (
 )
 
 if %cursor_block%==1 (
-    start "" %nircmd% setcursor 0 0
+    %nircmd% setcursor 0 0
 )
 
 %svv% /Mute "%stream%"
 %svv% /SetVolume "%stream%" 0
-%svv% /Unmute "%aimp%"
-%svv% /SetVolume "%aimp%" 100
+%svv% /Unmute "%mpg123%"
+%svv% /SetVolume "%mpg123%" 100
 
 timeout /t 1 >nul 2>&1
 goto loop

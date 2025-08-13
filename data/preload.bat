@@ -1,15 +1,11 @@
 echo [%date% %time%] PRELOAD START >> %~dp0_log.txt
 
-set aimp=%~dp0AIMP\AIMP.exe
+set nircmd=%~dp0NIRCMD\NIRCMD.exe
 
-rmdir /s /q %~dp0AIMP\Profile >nul 2>&1
-start "" "%aimp%"
-
-echo ====================
-echo PRELOAD...
-timeout /t 30
-
-taskkill /Im AIMP.exe /f /T >nul 2>&1
-rmdir /s /q %~dp0AIMP\Profile >nul 2>&1
+%nircmd% setcursor 0 0
+%nircmd% setcursor 50 50
+%nircmd% setcursor 100 100
+%nircmd% setcursor 50 50
+%nircmd% setcursor 0 0
 
 echo [%date% %time%] PRELOAD STOP >> %~dp0_log.txt
