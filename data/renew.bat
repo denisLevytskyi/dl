@@ -8,4 +8,4 @@ set svv=%~dp0SVV\SVV.exe
 
 echo ====================
 echo STREAM RENEW...
-timeout /t 10
+timeout /t 10 >nul 2>&1

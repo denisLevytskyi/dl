@@ -11,7 +11,7 @@ set switch_path=%~dp0var_switch.txt
 echo ====================
 echo START...
 start "" /min %switch%
-timeout /t %2
+timeout /t %2 >nul 2>&1
 
 echo ====================
 echo GO...
@@ -19,7 +19,7 @@ echo GO...
 
 echo ====================
 echo END...
-timeout /t %3
+timeout /t %3 >nul 2>&1
 
 echo 0 > %switch_path%
 echo [%date% %time%] DL STOP >> %~dp0_log.txt

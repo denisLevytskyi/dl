@@ -13,7 +13,7 @@ set switch_path=%~dp0var_switch.txt
 echo ====================
 echo START...
 start "" /min %switch%
-timeout /t %2
+timeout /t %2 >nul 2>&1
 
 setlocal enabledelayedexpansion
 for /l %%i in (1, 1, %3) do (
@@ -23,13 +23,13 @@ for /l %%i in (1, 1, %3) do (
 
     echo ====================
     echo PAUSE %%i / %3...
-    timeout /t %4
+    timeout /t %4 >nul 2>&1
 )
 endlocal
 
 echo ====================
 echo END...
-timeout /t %5
+timeout /t %5 >nul 2>&1
 
 echo 0 > %switch_path%
 echo [%date% %time%] DL-REP STOP >> %~dp0_log.txt

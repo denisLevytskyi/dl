@@ -18,5 +18,5 @@ color 4
 
 echo = = = = = = = = = = = = = = = = = = = = =
 echo = = = = = = = =  WARNING  = = = = = = = =
-echo = = = = = = = = AIR ALARM = = = = = = = =
+echo = = = = = =  ALARM NOW START  = = = = = =
 echo = = = = = = = = = = = = = = = = = = = = =
