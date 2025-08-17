@@ -44,5 +44,5 @@ if %log_on%==1 (
     echo [%date% %time%] %status% --- %region% --- %response% --- %alert_on% >> %~dp0_log_monitor.txt
 )
 
-timeout /t 30 >nul 2>&1
+timeout /t 20 >nul 2>&1
 goto loop
