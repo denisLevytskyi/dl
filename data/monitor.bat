@@ -1,6 +1,7 @@
 echo [%date% %time%] MONITOR START >> %~dp0_log.txt
 
 set /p alert_on=<%~dp0var_alert_on.txt
+set /p level_stream=<%~dp0var_level_stream.txt
 set /p log_on=<%~dp0var_log_on.txt
 set /p region=<%~dp0var_region.txt
 set /p stream=<%~dp0var_stream.txt
@@ -28,7 +29,7 @@ if %response%=="A" (
             %svv% /SetVolume "%stream%" 0
             timeout /t 50 >nul 2>&1
             %svv% /Unmute "%stream%"
-            %svv% /SetVolume "%stream%" 100
+            %svv% /SetVolume "%stream%" %level_stream%
         )
     ) else (
         color C
