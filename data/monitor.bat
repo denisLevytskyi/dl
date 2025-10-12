@@ -1,6 +1,5 @@
 echo [%date% %time%] MONITOR START >> %~dp0_log.txt
 
-set /p alert_on=<%~dp0var_alert_on.txt
 set /p level_stream=<%~dp0var_level_stream.txt
 set /p log_on=<%~dp0var_log_on.txt
 set /p region=<%~dp0var_region.txt
@@ -12,6 +11,8 @@ set svv=%~dp0SVV\SVV.exe
 set wget=%~dp0WGET\WGET.exe
 
 :loop
+set /p alert_on=<%~dp0var_alert_on.txt
+
 %wget% -q -O %response_path% https://api.alerts.in.ua/v1/iot/active_air_raid_alerts/%region%.json?token=%token%
 set /p response=<%response_path%
 
@@ -37,8 +38,13 @@ if %response%=="A" (
     )
 ) else (
     set status=0
-    color 2
-    echo [%date% %time%] - NO AIR ALARM
+    if %alert_on%==1 (
+        color 6
+        echo [%date% %time%] - NO AIR ALARM - ALERT ON
+    ) else (
+        color 2
+        echo [%date% %time%] - NO AIR ALARM - ALERT OFF
+    )
 )
 
 if %log_on%==1 (
