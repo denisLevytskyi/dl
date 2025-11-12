@@ -10,7 +10,6 @@ set /p stream=<%~dp0var_stream.txt
 set mpg123=%~dp0MPG123\MPG123.exe
 set nircmd=%~dp0NIRCMD\NIRCMD.exe
 set svv=%~dp0SVV\SVV.exe
-set switch_path=%~dp0var_switch.txt
 
 if %cursor_block%==1 (
     echo ====================
@@ -20,7 +19,6 @@ if %cursor_block%==1 (
 :loop
 set /p switch=<%~dp0var_switch.txt
 if %switch%==0 (
-    echo 1 > %switch_path%
     %svv% /Unmute "%stream%"
     %svv% /SetVolume "%stream%" %level_stream%
     echo [%date% %time%] SWITCH STOP >> %~dp0_log.txt
