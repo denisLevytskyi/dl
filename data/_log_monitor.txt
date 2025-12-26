@@ -1,1 +1,2 @@
-TIME                     ST-S  REG   RES     AL-T
+[TIME --- STATUS --- REGION --- RESPONSE --- ALERT ON/OFF]
+START LOG

@@ -12,20 +12,25 @@ set wget=%~dp0WGET\WGET.exe
 
 :loop
 set /p alert_on=<%~dp0var_alert_on.txt
+if %alert_on%==1 (
+    set alert_on_text=ALERT ON
+) else (
+    set alert_on_text=ALERT OFF
+)
 
 %wget% -q -O %response_path% https://api.alerts.in.ua/v1/iot/active_air_raid_alerts/%region%.json?token=%token%
 set /p response=<%response_path%
 
 if %response%=="A" (
     if %status%==0 (
-        echo [%date% %time%] ALARM SIGNAL RECEIVED >> %~dp0_log.txt
+        echo [%date% %time%] ALARM SIGNAL RECEIVED - %alert_on_text% >> %~dp0_log.txt
         set status=1
         color 4
         if %alert_on%==1 (
-            echo [%date% %time%] - START AIR ALARM ALERT
+            echo [%date% %time%] - AIR ALARM ALERT...
             call %~dp0dl_rep.bat 99.mp3 5 3 3 100
         ) else (
-            echo [%date% %time%] - START AIR ALARM
+            echo [%date% %time%] - SILENCE...
             %svv% /Mute "%stream%"
             %svv% /SetVolume "%stream%" 0
             timeout /t 50 >nul 2>&1
@@ -34,16 +39,16 @@ if %response%=="A" (
         )
     ) else (
         color C
-        echo [%date% %time%] - AIR ALARM
+        echo [%date% %time%] - AIR ALARM - %alert_on_text%
     )
 ) else (
     set status=0
-    if %alert_on%==1 (
+    if %response%=="P" (
         color 6
-        echo [%date% %time%] - NO AIR ALARM - ALERT ON
+        echo [%date% %time%] - PART AIR ALARM - %alert_on_text%
     ) else (
         color 2
-        echo [%date% %time%] - NO AIR ALARM - ALERT OFF
+        echo [%date% %time%] - NO AIR ALARM - %alert_on_text%
     )
 )
 
