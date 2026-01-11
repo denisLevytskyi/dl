@@ -5,6 +5,7 @@ echo [%date% %time%] SWITCH START >> %~dp0_log.txt
 
 set /p cursor_block=<%~dp0var_cursor_block.txt
 set /p level_mpg123=<%~dp0var_level_mpg123.txt
+set /p level_speakers=<%~dp0var_level_speakers.txt
 set /p level_stream=<%~dp0var_level_stream.txt
 set /p stream=<%~dp0var_stream.txt
 set mpg123=%~dp0MPG123\MPG123.exe
@@ -29,6 +30,8 @@ if %cursor_block%==1 (
     %nircmd% setcursor 0 0
 )
 
+%svv% /Unmute "Speakers"
+%svv% /SetVolume "Speakers" %level_speakers%
 %svv% /Mute "%stream%"
 %svv% /SetVolume "%stream%" 0
 %svv% /Unmute "%mpg123%"
