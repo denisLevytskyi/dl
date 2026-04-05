@@ -1,4 +1,4 @@
-echo [%date% %time%] TOGGLE ALERT >> %~dp0_log.txt
+echo [%date% %time%] ALERT TOGGLE >> %~dp0_log.txt
 
 set /p alert_on=<%~dp0var_alert_on.txt
 set alert_on_path=%~dp0var_alert_on.txt

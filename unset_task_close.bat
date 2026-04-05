@@ -8,6 +8,7 @@ schtasks /delete /tn "_close2" /f >nul 2>&1
 schtasks /delete /tn "_close3" /f >nul 2>&1
 schtasks /delete /tn "_close4" /f >nul 2>&1
 schtasks /delete /tn "_close5" /f >nul 2>&1
+schtasks /delete /tn "_close6" /f >nul 2>&1
 
 echo ====================
 echo UNSET TASK CLOSE OK
