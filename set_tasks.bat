@@ -27,5 +27,5 @@ call %~dp0task_make_line_free.bat
 start "" /min %~dp0task_monitor.bat
 
 echo ====================
-echo SET TASKS OK
+echo SET TASKS OK...
 timeout /t 10 >nul 2>&1
