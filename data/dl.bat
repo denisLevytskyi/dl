@@ -8,6 +8,8 @@ set mpg123=%~dp0MPG123\MPG123.exe
 set switch=%~dp0switch.bat
 set switch_path=%~dp0var_switch.txt
 
+call %~dp0blinker.bat
+
 :loop
 set /p switch_text=<%switch_path%
 if %switch_text%==1 (
