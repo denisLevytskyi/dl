@@ -1,5 +1,8 @@
 echo [%date% %time%] ALERT >> %~dp0_log.txt
 
+set tg=%~dp0tg.bat
+start "" /min %tg% ALERT
+
 echo = = = = = = = = = = = = = = = = = = = = =
 echo = = = = = = = =  WARNING  = = = = = = = =
 echo = = = =  YOU HAVE TIME TO CANCEL  = = = =
