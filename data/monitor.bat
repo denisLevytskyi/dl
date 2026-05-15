@@ -8,6 +8,7 @@ set /p token=<%~dp0var_token.txt
 set response_path=%~dp0var_response.txt
 set status=0
 set svv=%~dp0SVV\SVV.exe
+set tg=%~dp0tg.bat
 set wget=%~dp0WGET\WGET.exe
 
 :loop
@@ -27,9 +28,11 @@ if %response%=="A" (
         set status=1
         color 4
         if %alert_on%==1 (
+            start "" /min %tg% AIR_ALARM_ALERT_ON
             echo [%date% %time%] - AIR ALARM ALERT...
             call %~dp0dl_rep.bat 99.mp3 5 3 3 100
         ) else (
+            start "" /min %tg% AIR_ALARM_ALERT_OFF
             echo [%date% %time%] - SILENCE...
             %svv% /Mute "%stream%"
             %svv% /SetVolume "%stream%" 0

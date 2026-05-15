@@ -6,6 +6,7 @@ set /p stream=<%~dp0var_stream.txt
 set blinker_path=%~dp0var_blinker.txt
 set cursor_block_path=%~dp0var_cursor_block.txt
 set svv=%~dp0SVV\SVV.exe
+set tg=%~dp0tg.bat
 
 %svv% /Unmute "Speakers"
 %svv% /SetVolume "Speakers" %level_speakers%
@@ -14,6 +15,8 @@ set svv=%~dp0SVV\SVV.exe
 
 %svv% /GetPercent "%stream%
 if %errorlevel%==0 (
+    start "" /min %tg% CHECK_CONTROL_FAIL
+
     color 4
     echo [%date% %time%] CHECK CONTROL FAIL >> %~dp0_log.txt
     echo ====================
@@ -31,6 +34,8 @@ if %errorlevel%==0 (
 
     call %~dp0reboot.bat
 ) else (
+    start "" /min %tg% CHECK_CONTROL_OK
+
     echo [%date% %time%] CHECK CONTROL ОК >> %~dp0_log.txt
     echo ====================
     echo CHECK CONTROL OK...
