@@ -4,7 +4,7 @@ set blinker_path=%~dp0var_blinker.txt
 set cursor_block_path=%~dp0var_cursor_block.txt
 set tg=%~dp0tg.bat
 
-start "" /min %tg% BLINKER_RESTORED
+start "" /min %tg% BLINKER_RESET
 
 echo 0 > %blinker_path%
 echo [%date% %time%] BLINKER RESTORED >> %~dp0_log.txt
