@@ -1,7 +1,9 @@
 echo [%date% %time%] ALERT OFF >> %~dp0_log.txt
 
 set alert_on_path=%~dp0var_alert_on.txt
+set tg=%~dp0tg.bat
 
+start "" /min %tg% ALERT_OFF
 echo 0 > %alert_on_path%
 echo ====================
 echo ALERT IS NOW OFF...
