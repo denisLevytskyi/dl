@@ -11,6 +11,8 @@ set svv=%~dp0SVV\SVV.exe
 set tg=%~dp0tg.bat
 set wget=%~dp0WGET\WGET.exe
 
+start "" /min %tg% MONITOR_START
+
 :loop
 set /p alert_on=<%~dp0var_alert_on.txt
 if %alert_on%==1 (
