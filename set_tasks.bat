@@ -26,6 +26,7 @@ schtasks /create /tn "_die" /tr "%~dp0task_die.bat" /sc once /st 23:59 /f >nul 2
 
 call %~dp0task_alert_off.bat
 call %~dp0task_make_line_free.bat
+call %~dp0task_comander.bat
 
 start "" /min %~dp0task_monitor.bat
 start "" %~dp0task_blinker_msg.bat
