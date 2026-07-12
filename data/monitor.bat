@@ -1,7 +1,6 @@
 echo [%date% %time%] MONITOR START >> %~dp0_log.txt
 
 set /p level_stream=<%~dp0var_level_stream.txt
-set /p log_on=<%~dp0var_log_on.txt
 set /p region=<%~dp0var_region.txt
 set /p stream=<%~dp0var_stream.txt
 set /p token=<%~dp0var_token.txt
@@ -57,9 +56,7 @@ if %response%=="A" (
     )
 )
 
-if %log_on%==1 (
-    echo [%date% %time%] %status% --- %region% --- %response% --- %alert_on% >> %~dp0_log_monitor.txt
-)
+echo [%date% %time%] %status% --- %region% --- %response% --- %alert_on% >> %~dp0_log_monitor.txt
 
 timeout /t 20 >nul 2>&1
 goto loop

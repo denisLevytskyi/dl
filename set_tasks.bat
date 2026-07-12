@@ -29,7 +29,7 @@ call %~dp0task_make_line_free.bat
 call %~dp0task_commander.bat
 
 start "" /min %~dp0task_monitor.bat
-start "" %~dp0task_blinker_msg.bat
+start "" %~dp0task_blinker_on_start.bat
 
 echo ====================
 echo SET TASKS OK...

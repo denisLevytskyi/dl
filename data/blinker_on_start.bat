@@ -1,4 +1,4 @@
-echo [%date% %time%] BLINKER MSG >> %~dp0_log.txt
+echo [%date% %time%] BLINKER ON START >> %~dp0_log.txt
 
 set /p blinker=<%~dp0var_blinker.txt
 set tg=%~dp0tg.bat
