@@ -72,9 +72,9 @@ def handle(message):
     # обработка команды
     cmd = COMMANDS.get(text)
     if cmd:
-        subprocess.Popen(f'start "" cmd /c "{str(cmd)}"', shell=True)
         bot.reply_to(message, "COMMAND_START")
         write_log("COMMAND START")
+        subprocess.Popen(f'start "" cmd /c "{str(cmd)}"', shell=True)
     else:
         bot.reply_to(message, "UNKNOWN_COMMAND")
         write_log("UNKNOWN COMMAND")
