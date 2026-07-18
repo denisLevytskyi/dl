@@ -38,10 +38,11 @@ def handle(message):
     write_log(f"GET COMMAND {text}")
 
     # защита по chat_id
-    if message.chat.id != ALLOWED_CHAT:
-        bot.reply_to(message, "USER_ERROR")
-        write_log("USER ERROR")
-        return
+    if message.chat.id == ALLOWED_CHAT:
+        write_log("ADMIN LOGIN")
+    else:
+        write_log(f"USER LOGIN {message.chat.id} @{message.from_user.username or '-'}")
+        bot.send_message(ALLOWED_CHAT, f"USER_LOGIN:\n\nID → {message.chat.id}\nNAME → {message.from_user.first_name}\nLAST NAME → {message.from_user.last_name or '-'}\nUSERNAME → @{message.from_user.username or '-'}\nCOMMAND → {text}")
 
     # команда списка
     if text == "dl":
