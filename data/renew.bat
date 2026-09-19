@@ -1,3 +1,5 @@
+rem %1 - проверка контроля
+
 echo [%date% %time%] RENEW >> %~dp0_log.txt
 
 set /p level_speakers=<%~dp0var_level_speakers.txt
@@ -13,32 +15,40 @@ set tg=%~dp0tg.bat
 %svv% /Unmute "%stream%"
 %svv% /SetVolume "%stream%" %level_stream%
 
-%svv% /GetPercent "%stream%
-if %errorlevel%==0 (
-    start "" /min %tg% CHECK_CONTROL_FAIL
+if %1==1 (
+    %svv% /GetPercent "%stream%
+    if %errorlevel%==0 (
+        start "" /min %tg% CHECK_CONTROL_FAIL
 
-    color 4
-    echo [%date% %time%] CHECK CONTROL FAIL >> %~dp0_log.txt
-    echo ====================
-    echo CHECK CONTROL FAIL...
+        color 4
+        echo [%date% %time%] CHECK CONTROL FAIL >> %~dp0_log.txt
+        echo ====================
+        echo CHECK CONTROL FAIL...
 
-    echo 1 > %blinker_path%
-    echo [%date% %time%] BLINKER THROWN OUT >> %~dp0_log.txt
-    echo ====================
-    echo BLINKER THROWN OUT...
+        echo 1 > %blinker_path%
+        echo [%date% %time%] BLINKER THROWN OUT >> %~dp0_log.txt
+        echo ====================
+        echo BLINKER THROWN OUT...
     
-    echo 0 > %cursor_block_path%
-    echo [%date% %time%] CURSOR UNBLOCKED >> %~dp0_log.txt
-    echo ====================
-    echo CURSOR IS NOW UNBLOCKED...
+        echo 0 > %cursor_block_path%
+        echo [%date% %time%] CURSOR UNBLOCKED >> %~dp0_log.txt
+        echo ====================
+        echo CURSOR IS NOW UNBLOCKED...
 
-    call %~dp0reboot.bat
+        call %~dp0reboot.bat
+    ) else (
+        start "" /min %tg% CHECK_CONTROL_OK
+
+        echo [%date% %time%] CHECK CONTROL ОК >> %~dp0_log.txt
+        echo ====================
+        echo CHECK CONTROL OK...
+    )
 ) else (
-    start "" /min %tg% CHECK_CONTROL_OK
+    start "" /min %tg% CHECK_CONTROL_DECLINE
 
-    echo [%date% %time%] CHECK CONTROL ОК >> %~dp0_log.txt
+    echo [%date% %time%] CHECK CONTROL DECLINE >> %~dp0_log.txt
     echo ====================
-    echo CHECK CONTROL OK...
+    echo CHECK CONTROL DECLINE...
 )
 
 echo ====================

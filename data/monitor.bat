@@ -1,12 +1,9 @@
 echo [%date% %time%] MONITOR START >> %~dp0_log.txt
 
-set /p level_stream=<%~dp0var_level_stream.txt
 set /p region=<%~dp0var_region.txt
-set /p stream=<%~dp0var_stream.txt
 set /p token=<%~dp0var_token.txt
 set response_path=%~dp0var_response.txt
 set status=0
-set svv=%~dp0SVV\SVV.exe
 set tg=%~dp0tg.bat
 set wget=%~dp0WGET\WGET.exe
 
@@ -30,33 +27,29 @@ if %response%=="A" (
         color 4
         if %alert_on%==1 (
             start "" /min %tg% AIR_ALARM_ALERT_ON
-            echo [%date% %time%] - AIR ALARM ALERT...
-            call %~dp0dl_rep.bat 99.mp3 5 3 3 100
+            call %~dp0dl_rep.bat 99.mp3 1 5 1 1
+            timeout /t 5 >nul 2>&1
+            call %~dp0mute.bat
         ) else (
             start "" /min %tg% AIR_ALARM_ALERT_OFF
-            echo [%date% %time%] - SILENCE...
-            %svv% /Mute "%stream%"
-            %svv% /SetVolume "%stream%" 0
+            call %~dp0mute.bat
             timeout /t 50 >nul 2>&1
-            %svv% /Unmute "%stream%"
-            %svv% /SetVolume "%stream%" %level_stream%
+            call %~dp0renew.bat 0
         )
-    ) else (
-        color C
-        echo [%date% %time%] - AIR ALARM - %alert_on_text%
     )
+    echo [%date% %time%] - AIR ALARM - %alert_on_text%
 ) else (
-    set status=0
-    if %response%=="P" (
-        color 6
-        echo [%date% %time%] - PART AIR ALARM - %alert_on_text%
-    ) else (
+    if %status%==1 (
+        start "" /min %tg% CLEAR
+        echo [%date% %time%] CLEAR SIGNAL RECEIVED - %alert_on_text% >> %~dp0_log.txt
+        set status=0
         color 2
-        echo [%date% %time%] - NO AIR ALARM - %alert_on_text%
+        call %~dp0renew.bat 0
     )
+    echo [%date% %time%] - NO AIR ALARM - %alert_on_text%
 )
 
 echo [%date% %time%] %status% --- %region% --- %response% --- %alert_on% >> %~dp0_log_monitor.txt
 
-timeout /t 20 >nul 2>&1
+timeout /t 15 >nul 2>&1
 goto loop
