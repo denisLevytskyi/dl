@@ -14,9 +14,9 @@ set tg=%~dp0tg.bat
 %svv% /SetVolume "Speakers" %level_speakers%
 %svv% /Unmute "%stream%"
 %svv% /SetVolume "%stream%" %level_stream%
+%svv% /GetPercent "%stream%"
 
 if %1==1 (
-    %svv% /GetPercent "%stream%"
     if %errorlevel%==0 (
         start "" /min %tg% CHECK_CONTROL_FAIL
 
