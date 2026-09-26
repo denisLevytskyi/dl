@@ -28,14 +28,11 @@ if %response%=="A" (
         if %alert_on%==1 (
             start "" /min %tg% AIR_ALARM_ALERT_ON
             call %~dp0dl_rep.bat 99.mp3 1 5 1 1
-            timeout /t 5 >nul 2>&1
-            call %~dp0mute.bat
         ) else (
             start "" /min %tg% AIR_ALARM_ALERT_OFF
-            call %~dp0mute.bat
-            timeout /t 50 >nul 2>&1
-            call %~dp0renew.bat 0
         )
+        timeout /t 5 >nul 2>&1
+        call %~dp0mute.bat
     )
     echo [%date% %time%] - AIR ALARM - %alert_on_text%
 ) else (
