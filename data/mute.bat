@@ -4,6 +4,8 @@ set /p stream=<%~dp0var_stream.txt
 set svv=%~dp0SVV\SVV.exe
 set tg=%~dp0tg.bat
 
+%svv% /Mute "Speakers"
+%svv% /SetVolume "Speakers" 0
 %svv% /Mute "%stream%"
 %svv% /SetVolume "%stream%" 0
 

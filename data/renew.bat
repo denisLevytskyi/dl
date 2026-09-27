@@ -51,6 +51,8 @@ if %1==1 (
     echo CHECK CONTROL DECLINE...
 )
 
+start "" /min %tg% RENEW
+
 echo ====================
 echo STREAM RENEW...
 timeout /t 10 >nul 2>&1
