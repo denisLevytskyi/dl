@@ -51,6 +51,7 @@ if %1==1 (
     echo CHECK CONTROL DECLINE...
 )
 
+timeout /t 5 >nul 2>&1
 start "" /min %tg% RENEW
 
 echo ====================
