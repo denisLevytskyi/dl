@@ -50,3 +50,6 @@ timeout /t %5 >nul 2>&1
 
 echo 0 > %switch_path%
 echo [%date% %time%] DL-REP STOP >> %~dp0_log.txt
+
+timeout /t 5 >nul 2>&1
+%~dp0mute.bat

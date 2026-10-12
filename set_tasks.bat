@@ -6,10 +6,10 @@ echo SET TASKS...
 echo [%date% %time%] SET TASKS >> %~dp0data\_log.txt
 
 schtasks /create /tn "_renew1" /tr "%~dp0task_renew.bat" /sc once /st 08:01 /f >nul 2>&1
-schtasks /create /tn "_renew2" /tr "%~dp0task_renew.bat" /sc once /st 08:55 /f >nul 2>&1
+schtasks /create /tn "_renew2" /tr "%~dp0task_renew.bat" /sc once /st 08:50 /f >nul 2>&1
 schtasks /create /tn "_renew3" /tr "%~dp0task_renew.bat" /sc once /st 22:30 /f >nul 2>&1
 
-schtasks /create /tn "_alert_off" /tr "%~dp0task_alert_off.bat" /sc once /st 08:50 /f >nul 2>&1
+schtasks /create /tn "_alert_off" /tr "%~dp0task_alert_off.bat" /sc once /st 08:55 /f >nul 2>&1
 schtasks /create /tn "_alert_on" /tr "%~dp0task_alert_on.bat" /sc once /st 09:05 /f >nul 2>&1
 
 schtasks /create /tn "_minute" /tr "%~dp0task_minute.bat" /sc once /st 09:00 /f >nul 2>&1
