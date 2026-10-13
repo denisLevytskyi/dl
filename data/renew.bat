@@ -4,7 +4,7 @@ echo [%date% %time%] RENEW >> %~dp0_log.txt
 
 set /p level_speakers=<%~dp0var_level_speakers.txt
 set /p level_stream=<%~dp0var_level_stream.txt
-set /p response<=%~dp0var_response.txt
+set /p response=<%~dp0var_response.txt
 set /p stream=<%~dp0var_stream.txt
 set blinker_path=%~dp0var_blinker.txt
 set cursor_block_path=%~dp0var_cursor_block.txt
